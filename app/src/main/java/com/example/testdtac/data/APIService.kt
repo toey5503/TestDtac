@@ -7,9 +7,8 @@ import retrofit2.http.*
 
 interface APIService {
 
-
-    @GET("/api/?results={alert_id}")
-    fun getSearchResult(@Field("") vehicle_id: String): Observable<SearchResponse>
+    @GET("/api/?results=")
+    fun getSearchResult(): Observable<SearchResponse>
 
 }
 

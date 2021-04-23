@@ -17,13 +17,11 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class MainPresenter {
-
     @SuppressLint("CheckResult")
-    fun getSearch(response:(String)->Unit) {
+    fun getSearch() {
 
-        DataModule.instance()!!.getSearchResult("")
+        DataModule.instance()!!.getSearchResult()
             .subscribeOn(Schedulers.io())
-            .timeout(120, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<SearchResponse>() {
                 override fun onComplete() {
@@ -31,9 +29,6 @@ class MainPresenter {
                 }
 
                 override fun onNext(t: SearchResponse) {
-                    Log.d("As5dasd", t.info.results.toString())
-                    response
-
                 }
 
                 override fun onError(e: Throwable) {
